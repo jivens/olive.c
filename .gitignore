@@ -1,0 +1,12 @@
+# ignore all files
+*
+# Now, add back in all directories recursively
+!/**/
+# Add back any files with an extension
+!*.*
+# The goal of the above three patterns is to include everything EXCEPT
+# files without an extension, in other words, executables in Linux
+
+
+# Don't add the images, but it is okay to add the directory
+./images/*.ppm

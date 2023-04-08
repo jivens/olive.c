@@ -6,6 +6,7 @@
 #include <errno.h>
 #include <string.h>
 #include <stdbool.h>
+#include <stdint.h>
 
 #define OLIVEC_SWAP(T, a, b) do { T t = a; a = b; b = t; } while (0) 
 #define OLIVEC_SIGN(T, x) ((T)((x) > 0) - (T)((x) < 0))
@@ -264,9 +265,9 @@ Errno olivec_save_to_ppm_file(uint32_t *pixels, size_t width, size_t height, con
             uint32_t pixel = pixels[i];
             uint8_t bytes[3] = 
             {
-                (pixel>>(8*0))&0xFF,
-                (pixel>>(8*1))&0xFF,
-                (pixel>>(8*2))&0xFF,
+                (uint8_t) ((pixel>>(8*0))&0xFF),
+                (uint8_t) ((pixel>>(8*1))&0xFF),
+                (uint8_t) ((pixel>>(8*2))&0xFF),
             };
             fwrite(bytes, sizeof(bytes), 1, f);
             if (ferror(f)) return_defer(errno);
